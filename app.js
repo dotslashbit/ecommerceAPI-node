@@ -11,6 +11,9 @@ const port = process.env.PORT || 5001;
 // database
 const connectDB = require("./db/connect");
 
+//routers
+const authRouter = require("./routes/authRoutes");
+
 //middleware
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
@@ -21,6 +24,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("ECommerce API");
 });
+
+app.use("/api/v1/auth", authRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
